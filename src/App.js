@@ -1,5 +1,6 @@
 import React, { useState, Fragment} from 'react';
 import Form from './components/Form';
+import Appointment from './components/Appointment';
 
 function App() {
   const [appointments, setAppointments] = useState([])
@@ -20,7 +21,13 @@ function App() {
               />
           </div>
           <div className="one-half column">
-
+            {appointments.map( (appointment, index) => (
+              <Appointment
+                  key={index}
+                  index={index}
+                  appointment={appointment}
+                />
+            ))}
           </div>
         </div>
       </div>
