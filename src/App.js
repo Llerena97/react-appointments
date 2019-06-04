@@ -10,6 +10,12 @@ function App() {
     setAppointments(newAppointments)
   }
 
+  const deleteAppointment = index => {
+    const newAppointments = [...appointments]
+    newAppointments.splice(index, 1)
+    setAppointments(newAppointments)
+  }
+
   return (
     <Fragment>
       <h1>Patient Manager</h1>
@@ -26,6 +32,7 @@ function App() {
                   key={index}
                   index={index}
                   appointment={appointment}
+                  deleteAppointment={deleteAppointment}
                 />
             ))}
           </div>
