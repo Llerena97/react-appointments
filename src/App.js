@@ -2,22 +2,13 @@ import React, { useState, Fragment} from 'react';
 import Form from './components/Form';
 
 function App() {
-  const [appointment, setAppointments] = useState({
-    pet: '',
-    owner: '',
-    date: '',
-    time: '',
-    symptoms: ''
-  });
+  const [appointments, setAppointments] = useState([])
 
-  const updateState = e => {
-    setAppointments({
-      ...appointment,
-      [e.target.name]: e.target.value
-    })
+  const createAppointment = appointment => {
+    const newAppointments = [...appointments, appointment]
+    setAppointments(newAppointments)
   }
-  
-  console.log(appointment);
+
   return (
     <Fragment>
       <h1>Patient Manager</h1>
@@ -25,7 +16,7 @@ function App() {
         <div className="row">
           <div className="one-half column">
             <Form
-                updateState={updateState}
+              createAppointment={createAppointment}
               />
           </div>
           <div className="one-half column">

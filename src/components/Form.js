@@ -1,10 +1,30 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
-const Form = ({updateState}) => {
+const Form = ({createAppointment}) => {
+  const [appointment, setAppointment] = useState({
+    pet: '',
+    owner: '',
+    date: '',
+    time: '',
+    symptoms: ''
+  });
+
+
+  const updateState = e => {
+    setAppointment({
+      ...appointment,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const sendAppointment = e => {
+    e.preventDefault();
+    createAppointment(appointment);
+  }
   return(
     <Fragment>
       <h2>Create Appointment</h2>
-      <form>
+      <form onSubmit={sendAppointment}>
         <label>Pet Name</label>
         <input
           type="text"
