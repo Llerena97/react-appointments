@@ -1,13 +1,15 @@
 import React, { useState, Fragment } from 'react';
 
 const Form = ({createAppointment}) => {
-  const [appointment, setAppointment] = useState({
+  const stateInitial = {
     pet: '',
     owner: '',
     date: '',
     time: '',
     symptoms: ''
-  });
+  }
+
+  const [appointment, setAppointment] = useState(stateInitial);
 
 
   const updateState = e => {
@@ -20,7 +22,9 @@ const Form = ({createAppointment}) => {
   const sendAppointment = e => {
     e.preventDefault();
     createAppointment(appointment);
+    setAppointment(stateInitial);
   }
+
   return(
     <Fragment>
       <h2>Create Appointment</h2>
@@ -32,6 +36,7 @@ const Form = ({createAppointment}) => {
           className="u-full-width"
           placeholder="Pet Name"
           onChange={updateState}
+          value={appointment.pet}
         />
 
         <label>Pet Owner</label>
@@ -41,6 +46,7 @@ const Form = ({createAppointment}) => {
           className="u-full-width"
           placeholder="Pet Owner"
           onChange={updateState}
+          value={appointment.owner}
         />
 
         <label>Date</label>
@@ -49,6 +55,7 @@ const Form = ({createAppointment}) => {
           className="u-full-width"
           name="date"
           onChange={updateState}
+          value={appointment.date}
         />
 
         <label>Time</label>
@@ -57,6 +64,7 @@ const Form = ({createAppointment}) => {
           className="u-full-width"
           name="time"
           onChange={updateState}
+          value={appointment.time}
         />
 
         <label>Symptoms</label>
@@ -64,6 +72,7 @@ const Form = ({createAppointment}) => {
           className="u-full-width"
           name="symptoms"
           onChange={updateState}
+          value={appointment.symptoms}
         ></textarea>
 
         <button type="submit" className="button-primary u-full-width">Add</button>
