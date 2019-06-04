@@ -16,6 +16,8 @@ function App() {
     setAppointments(newAppointments)
   }
 
+  const title = Object.keys(appointments).length === 0 ? "There aren't appointments" : "Manage appointments here!"
+
   return (
     <Fragment>
       <h1>Patient Manager</h1>
@@ -27,6 +29,7 @@ function App() {
               />
           </div>
           <div className="one-half column">
+            <h2>{title}</h2>
             {appointments.map( (appointment, index) => (
               <Appointment
                   key={index}
