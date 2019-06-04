@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Form = () => {
+const Form = ({updateState}) => {
   return(
     <Fragment>
       <h2>Create Appointment</h2>
@@ -11,6 +11,7 @@ const Form = () => {
           name="pet"
           className="u-full-width"
           placeholder="Pet Name"
+          onChange={updateState}
         />
 
         <label>Pet Owner</label>
@@ -19,6 +20,7 @@ const Form = () => {
           name="owner"
           className="u-full-width"
           placeholder="Pet Owner"
+          onChange={updateState}
         />
 
         <label>Date</label>
@@ -26,6 +28,7 @@ const Form = () => {
           type="date"
           className="u-full-width"
           name="date"
+          onChange={updateState}
         />
 
         <label>Time</label>
@@ -33,12 +36,14 @@ const Form = () => {
           type="time"
           className="u-full-width"
           name="time"
+          onChange={updateState}
         />
 
         <label>Symptoms</label>
         <textarea
           className="u-full-width"
           name="symptoms"
+          onChange={updateState}
         ></textarea>
 
         <button type="submit" className="button-primary u-full-width">Add</button>
