@@ -1,9 +1,14 @@
-import React, { useState, Fragment} from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import Form from './components/Form';
 import Appointment from './components/Appointment';
 
 function App() {
-  const [appointments, setAppointments] = useState([])
+  let initialAppointments = JSON.parse(localStorage.getItem('appointments'))
+  if (!initialAppointments) {
+    initialAppointments = [];
+  }
+
+  const [appointments, setAppointments] = useState(initialAppointments)
 
   const createAppointment = appointment => {
     const newAppointments = [...appointments, appointment]
@@ -15,6 +20,17 @@ function App() {
     newAppointments.splice(index, 1)
     setAppointments(newAppointments)
   }
+
+  useEffect(
+    () => {
+      let initialAppointments = JSON.parse(localStorage.getItem('appointments'))
+      if (initialAppointments) {
+        localStorage.setItem('appointments', JSON.stringify(appointments))
+      } else {
+        localStorage.setItem('appointments', JSON.stringify([]))
+      }
+    }, [appointments]
+  )
 
   const title = Object.keys(appointments).length === 0 ? "There aren't appointments" : "Manage appointments here!"
 
